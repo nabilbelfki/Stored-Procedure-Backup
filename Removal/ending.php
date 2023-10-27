@@ -1,7 +1,7 @@
 <?php
 
 // Set the directory path
-$dir_path = '/stored-procedures';
+$dir_path = '../stored-procedures';
 
 // Open the directory
 if ($handle = opendir($dir_path)) {
@@ -12,15 +12,15 @@ if ($handle = opendir($dir_path)) {
             // Read the contents of the file
             $file_contents = file_get_contents($dir_path . '/' . $file);
 
-            // Search for the text 'CREATE DEFINER='
-            $pos = strpos($file_contents, 'CREATE DEFINER=');
+            // Search for the last occurrence of the text 'END'
+            $pos = strrpos($file_contents, 'END');
 
             // Check if the text was found
             if ($pos !== false) {
-                // Extract everything from that point to the end of the file
-                $result = substr($file_contents, $pos);
+                // Extract everything before that point
+                $result = substr($file_contents, 0, $pos + strlen('END'));
 
-                // Rewrite the file with the extracted content
+                // Rewrite the file with the modified content
                 file_put_contents($dir_path . '/' . $file, $result);
             }
         }
@@ -29,3 +29,4 @@ if ($handle = opendir($dir_path)) {
     // Close the directory handle
     closedir($handle);
 }
+?>

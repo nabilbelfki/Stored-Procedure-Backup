@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Set the MySQL login credentials
-username="your_username"
-password="your_password"
-database="your_database"
+# Source config.sh
+source config.sh
 
 # Set the directory path
 dir_path="/stored-procedures"
+
+# Adds delimiter to execute stored procedure creation
+php ./Addition/add_delimiter.php
 
 # Loop through all the files in the directory
 for file in "$dir_path"/*.sql; do

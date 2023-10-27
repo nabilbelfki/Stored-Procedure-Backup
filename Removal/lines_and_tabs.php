@@ -1,7 +1,7 @@
 <?php
 
 // Set the directory path
-$dir_path = '/stored-procedures';
+$dir_path = '../stored-procedures';
 
 // Open the directory
 if ($handle = opendir($dir_path)) {
@@ -12,14 +12,16 @@ if ($handle = opendir($dir_path)) {
             // Read the contents of the file
             $file_contents = file_get_contents($dir_path . '/' . $file);
 
+            // Search for the first occurrence of the text 'CREATE'
+            $pos = strpos($file_contents, 'CREATE');
+
             // Check if the text was found
             if ($pos !== false) {
                 // Extract everything from that point to the end of the file
                 $result = substr($file_contents, $pos);
 
                 // Replace \n with a newline character and \t with a tab character
-                #$result = str_replace('kivu_test', "kivu_test_new", $result);
-                $result = str_replace('\t', "\t", $result);
+                $result = str_replace('\n', "\n", $result);
                 $result = str_replace('\t', "\t", $result);
 
                 // Rewrite the file with the modified content
@@ -31,3 +33,4 @@ if ($handle = opendir($dir_path)) {
     // Close the directory handle
     closedir($handle);
 }
+?>

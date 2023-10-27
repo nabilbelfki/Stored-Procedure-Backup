@@ -1,7 +1,8 @@
 <?php
 
 // Set the directory path
-$dir_path = '/stored-procedures';
+$dir_path = '../stored-procedures';
+$databasename = '<your-database-name>';
 
 // Open the directory
 if ($handle = opendir($dir_path)) {
@@ -16,11 +17,11 @@ if ($handle = opendir($dir_path)) {
             $file_contents = file_get_contents($dir_path . '/' . $file);
 
             // Add delimiter to the start and end of the file
-            $result = 'USE `kivu_test_new`;
+            $result = 'USE `' . $databasename . '`;
             DROP procedure IF EXISTS `' . $procedure_name . '`;
             
             DELIMITER $$
-            USE `kivu_test_new` $$ ' . $file_contents . '$$
+            USE `' . $databasename . '` $$ ' . $file_contents . '$$
 
             DELIMITER ;';
 

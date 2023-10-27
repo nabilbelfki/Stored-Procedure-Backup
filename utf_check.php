@@ -29,3 +29,4 @@ if ($handle = opendir($dir_path)) {
     // Close the directory handle
     closedir($handle);
 }
+?>
