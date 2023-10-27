@@ -22,14 +22,18 @@ Replace `"your_username"`, `"your_password"`, and `"your_database"` with your ac
 ## Backup Stored Procedures
 To backup your stored procedures, run the `backup.sh` script from the terminal:
 
-```./backup.sh```
+```
+./backup.sh
+```
 
 This script will create a backup of all stored procedures in the specified database and save them as `.sql` files in the `/stored-procedures` directory.
 
 ## Import Stored Procedures
 If you want to import the stored procedures into another database, you can use the `import.sh` script. Before running the script, make sure to update the `config.sh` file with the credentials of the database where you want to import the stored procedures. Then, run the following command in the terminal:
 
-```./import.sh```
+```
+./import.sh
+```
 
 This script will import all stored procedures from the `.sql` files in the `/stored-procedures` directory into the specified database.
 
